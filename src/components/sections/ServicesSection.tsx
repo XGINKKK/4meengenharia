@@ -31,7 +31,7 @@ const ServicesSection = () => {
       features: [
         'Laudo de Vistoria Técnica',
         'Laudo Estrutural',
-        'Laudo de Estabilidade',
+        'Laudo Técnico - Lei 2805/08 de BC',
         'Análise Patológica',
         'Parecer Técnico'
       ]
@@ -60,12 +60,12 @@ const ServicesSection = () => {
                 <h3 className="text-2xl font-semibold text-white mb-4 text-center">
                   {service.title}
                 </h3>
-                
+
                 {/* Description */}
                 <p className="text-white mb-6 text-center leading-relaxed">
                   {service.description}
                 </p>
-                
+
                 {/* Features */}
                 <ul className="space-y-3">
                   {service.features.map((feature, featureIndex) => (
@@ -79,11 +79,11 @@ const ServicesSection = () => {
             </ScrollReveal>
           ))}
         </div>
-        
+
         {/* CTA Sutil */}
         <ScrollReveal>
           <div className="mt-16">
-            <SectionCTA 
+            <SectionCTA
               variant="floating"
               title="Precisa de algum desses serviços?"
               subtitle="Nossa equipe está pronta para desenvolver a solução ideal para seu projeto"
