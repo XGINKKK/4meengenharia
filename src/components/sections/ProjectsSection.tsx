@@ -7,7 +7,7 @@ const projects = [
     id: 1,
     image: 'https://i.imgur.com/ffMUVEC.jpeg',
     location: 'Condomínio Haras Rio do Ouro, Balneário Camboriú/SC',
-    services: ['Estrutural', 'Hidrossanitário', 'Elétrico']
+    services: ['Estrutural', 'Hidrossanitário', 'Elétrico', 'Acompanhamento de obras']
   },
   {
     id: 2,
@@ -35,9 +35,9 @@ const projects = [
   },
   {
     id: 6,
-    image: 'https://i.imgur.com/35smNSW.jpeg',
-    location: 'Itajaí/SC',
-    services: ['Estrutural']
+    image: 'https://i.imgur.com/FTsu3V8.jpeg',
+    location: 'Condomínio Bella Vista Residence Club, Balneário Camboriú/SC',
+    services: ['Estrutural', 'Hidrossanitário', 'Elétrico', 'Acompanhamento de obras']
   }
 ];
 
@@ -62,14 +62,14 @@ const ProjectsSection = () => {
               <article className="project-card group">
                 {/* Image */}
                 <div className="project-image-wrapper">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={`Projeto em ${project.location}`}
                     className="project-image"
                     loading="lazy"
                   />
                 </div>
-                
+
                 {/* Content */}
                 <div className="project-content">
                   {/* Location */}
@@ -77,10 +77,10 @@ const ProjectsSection = () => {
                     <MapPin aria-hidden="true" />
                     <span>{project.location}</span>
                   </div>
-                  
+
                   {/* Label */}
                   <p className="project-label">Projetos elaborados:</p>
-                  
+
                   {/* List */}
                   <ul className="project-list">
                     {project.services.map((service, idx) => (
@@ -95,10 +95,10 @@ const ProjectsSection = () => {
             </ScrollReveal>
           ))}
         </div>
-        
+
         <ScrollReveal>
           <div className="mt-16">
-            <SectionCTA 
+            <SectionCTA
               variant="default"
               title="Vamos criar algo incrível juntos?"
               subtitle="Entre em contato e vamos transformar sua ideia em um projeto real e bem executado"

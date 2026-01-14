@@ -21,8 +21,8 @@ const HeroSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   return <section ref={containerRef} id="hero" className="relative h-[150vh]" // Altura maior para permitir o scroll
   >
-      {/* Container sticky com os efeitos */}
-      <motion.div style={{
+    {/* Container sticky com os efeitos */}
+    <motion.div style={{
       scale,
       opacity,
       y
@@ -86,7 +86,7 @@ const HeroSection = () => {
             duration: 0.8,
             delay: 0.8
           }} className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed">
-            Estrutural e fundações, hidrossanitário, elétrico, PPCI, laudos técnicos e assessoria
+            Estrutural e fundações, hidrossanitário, elétrico, PPCI, laudos técnicos e assessoria,
             prazos confiáveis e documentação completa.
           </motion.p>
 
@@ -106,7 +106,7 @@ const HeroSection = () => {
                 Fale Conosco
               </Button>
             </a>
-            
+
             <Link to="projects" smooth={true} duration={500} offset={-80}>
               <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black transition-all duration-300 font-bold px-8 py-4 text-lg">
                 Nossos Projetos
@@ -125,11 +125,11 @@ const HeroSection = () => {
           delay: 1.5
         }} className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <Link to="about" smooth={true} duration={500} offset={-80} className="cursor-pointer">
-            
+
           </Link>
         </motion.div>
       </div>
-      </motion.div>
-    </section>;
+    </motion.div>
+  </section>;
 };
 export default HeroSection;
