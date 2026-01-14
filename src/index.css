@@ -4,6 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* 4ME Engenharia Design System - Dark Theme */
 
 @layer base {
@@ -61,7 +82,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior removido - Lenis controla o scroll */
   }
 
   body {

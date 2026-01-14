@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import Lenis from '@studio-freight/lenis';
+import Lenis from 'lenis';
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -14,8 +14,18 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis();
+    // Initialize Lenis for smooth scrolling with optimized settings
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
 
     function raf(time: number) {
       lenis.raf(time);

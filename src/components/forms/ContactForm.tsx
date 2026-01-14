@@ -70,22 +70,53 @@ const ContactForm = () => {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Aqui você pode integrar com uma API de envio de e-mail
-      console.log('Form data:', data);
-      
-      // Simulando envio
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      // Prepara os dados para envio ao webhook
+      const webhookData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        projectType: data.projectType === 'outros' && data.otherProjectType
+          ? data.otherProjectType
+          : data.projectType,
+        message: data.message,
+        timestamp: new Date().toISOString(),
+        source: 'Landing Page 4ME Engenharia'
+      };
+
+      console.log('Enviando dados para webhook:', webhookData);
+
+      // Envia para o webhook usando variável de ambiente
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+      if (!webhookUrl) {
+        throw new Error('VITE_N8N_WEBHOOK_URL não configurada');
+      }
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro no webhook: ${response.status}`);
+      }
+
+      console.log('Resposta do webhook:', await response.json().catch(() => 'Sem resposta JSON'));
+
       toast({
         title: 'Mensagem enviada com sucesso!',
         description: 'Entraremos em contato em breve.',
         className: 'bg-green-600 text-white border-green-700',
       });
-      
+
       form.reset();
     } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
       toast({
         title: 'Erro ao enviar mensagem',
         description: 'Por favor, tente novamente mais tarde.',
