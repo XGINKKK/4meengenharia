@@ -1,3 +1,10 @@
+// Declaração de tipo para o dataLayer do GTM
+declare global {
+  interface Window {
+    dataLayer: Record<string, unknown>[];
+  }
+}
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -107,6 +114,12 @@ const ContactForm = () => {
       }
 
       console.log('Resposta do webhook:', await response.json().catch(() => 'Sem resposta JSON'));
+
+      // Dispara evento para o Google Tag Manager
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_lead_success'
+      });
 
       toast({
         title: 'Mensagem enviada com sucesso!',
