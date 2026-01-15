@@ -17,7 +17,13 @@ const ContactSection = () => {
     },
     {
       title: 'Email',
-      details: ['contato@4meengenharia.com']
+      details: ['contato@4meengenharia.com'],
+      link: 'mailto:contato@4meengenharia.com'
+    },
+    {
+      title: 'Instagram',
+      details: ['@4meengenharia'],
+      link: 'https://instagram.com/4meengenharia'
     }
   ];
 
@@ -39,21 +45,33 @@ const ContactSection = () => {
           {/* Contact Information */}
           <ScrollReveal>
             <div className="space-y-8">
-              {contactInfo.map((info, index) => (
+              {contactInfo.map((info) => (
                 <div key={info.title} className="engineering-card p-6 flex items-start space-x-4">
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-2">{info.title}</h3>
                     {info.details.map((detail, detailIndex) => (
-                      <p key={detailIndex} className="text-white">
-                        {detail}
-                      </p>
+                      info.link ? (
+                        <a
+                          key={detailIndex}
+                          href={info.link}
+                          target={info.link.startsWith('mailto:') ? undefined : '_blank'}
+                          rel={info.link.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                          className="block text-white hover:text-green-400 transition-colors duration-300"
+                        >
+                          {detail}
+                        </a>
+                      ) : (
+                        <p key={detailIndex} className="text-white">
+                          {detail}
+                        </p>
+                      )
                     ))}
                   </div>
                 </div>
               ))}
 
               {/* CTA */}
-              <SectionCTA 
+              <SectionCTA
                 variant="minimal"
                 title="Pronto para começar?"
                 subtitle="Entre em contato e vamos transformar sua ideia em realidade"
